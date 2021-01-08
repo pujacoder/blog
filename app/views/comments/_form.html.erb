@@ -1,0 +1,17 @@
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <p>
+    <%= form.label :commenter %><br> 
+    <%if user_signed_in?%>
+    <%=form.text_field :commenter ,:value=>current_user.email,:readonly=>true%>
+    <% else %>
+    <%= form.text_field :commenter%>
+    <%end%>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
