@@ -11,12 +11,12 @@ class CommentsController < ApplicationController
   def destroy
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
-    if (@comment.commenter == current_user.email) then
-      @comment.destroy
+    #if (@comment.commenter == current_user.email) then
+     @comment.destroy
     redirect_to article_path(@article)
-    else
-      render "comments/dumy"
-    end
+    #else
+     # render "comments/dumy"
+    
 
   end
   

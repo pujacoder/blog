@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   #http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
-  
+  load_and_authorize_resource
+  #before_action :set_article,only:[:show,:edit,:update,:destroy]
   def index
     @articles=Article.all
   end
@@ -16,9 +17,13 @@ class ArticlesController < ApplicationController
 
   def create
     @article=Article.new(article_params)
+    
 
     if @article.save
-      @article.creator=current_user.email
+      if user_signed_in?
+        @article.user_id=current_user.id
+        @article.creator=current_user.email
+      end
       @article.save
       redirect_to @article
 
