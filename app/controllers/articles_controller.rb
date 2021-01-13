@@ -6,6 +6,16 @@ class ArticlesController < ApplicationController
     @articles=Article.all
   end
 
+  def import
+    @article=Article.import(params[:file])
+    #if user_signed_in?
+     #   @article.creator=current_user.email
+      #else
+       # @article.creator="Guest"
+      #end
+      @article.save 
+    redirect_to root_path, notice: "acivity data imported"
+  end
   def show
     @article=Article.find(params[:id])
   end
@@ -23,6 +33,8 @@ class ArticlesController < ApplicationController
       if user_signed_in?
         @article.user_id=current_user.id
         @article.creator=current_user.email
+      else
+        @article.creator="Guest"
       end
       @article.save
       redirect_to @article

@@ -28,8 +28,32 @@
   <% end %>
 </ul>
 
+<!--<table>
+  <thead>
+    <tr>
+      <th>Creator</th>
+      <th>Title</th>
+      <th>Body</th>
+      <th>     </th>
+      <th>     </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@articles.each do |article|%>
+      <tr>
+        <td><%=article.creator%></td>
+        <td><%=article.title%></td>
+        <td><%=article.body%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>-->
+
 
 <%= link_to "New Article", new_article_path %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%=link_to "Upload Blog" ,'articles/csvupload'%>
+
 
 <!--<% if user_signed_in? %>
   <%= link_to "New Article", new_article_path %>
